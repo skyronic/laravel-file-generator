@@ -1,0 +1,28 @@
+{
+    "name": "skyronic/laravel-cookie",
+    "description": "Generate custom boilerplates like \"artisan make:model\"",
+    "type": "library",
+    "version": "0.1",
+    "license": "MIT",
+    "authors": [{
+        "name": "Anirudh Sanjeev",
+        "email": "skyronic@gmail.com"
+    }],
+    "require": {
+        "php": ">=5.6.4"
+    },
+    "require-dev": {
+        "mockery/mockery": "~0.9",
+        "phpunit/phpunit": "~4.0|~5.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Skyronic\\Cookie\\": "src/"
+        }
+    }
+}
