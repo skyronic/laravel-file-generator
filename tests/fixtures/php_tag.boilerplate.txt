@@ -1,0 +1,16 @@
+{
+   "name": "php tag test",
+   "out": "foo/{{ $name }}.txt",
+   "params": {
+       "opt1": "optional"
+   }
+}
+---
+<?php
+class Hello {}
+?>
+
+<?php class Hello {} ?>
+<? class Hello {} ?>
+
+<?= $yo ?>

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tests;
 use PHPUnit_Framework_TestCase;
 use Skyronic\Cookie\FileParser;
@@ -86,6 +85,18 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
         $content1 = $fp->getContents();
         $this->assertContains("MY_OVERRIDDEN_VALUE", $content1);
         $this->assertNotContains("MY_DEFAULT_VALUE", $content1);
+    }
+
+    public function testPhpTagHandling () {
+        $fp = new FileParser(__DIR__."/fixtures/php_tag.boilerplate.txt");
+        $fp->render([
+            'name' => 'foo'
+        ]);
+        $content = $fp->getContents();
+        $this->assertContains("<?php\nclass Hello {}\n?>", $content);
+        $this->assertContains("<?php class Hello {} ?>", $content);
+        $this->assertContains("<? class Hello {} ?>", $content);
+        $this->assertContains('<?= $yo ?>', $content);
     }
 
 }
