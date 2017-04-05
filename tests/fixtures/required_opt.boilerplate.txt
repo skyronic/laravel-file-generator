@@ -1,0 +1,20 @@
+{
+   "name": "required/opt test",
+   "out": "foo/{{ $name }}.txt",
+   "params": {
+       "req1": "required",
+       "opt1": "optional",
+       "def1": "MY_DEFAULT_VALUE"
+   }
+}
+---
+ALWAYS_VISIBLE
+
+{{ $req1 }}
+
+@if($opt1)
+HAS_OPT_VALUE
+{{ $opt1 }}
+@endif
+
+{{ $def1 }}

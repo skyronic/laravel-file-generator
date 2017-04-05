@@ -111,10 +111,57 @@ class FileParser
      * @param $params
      */
     public function render($params) {
+        $params = $this->cleanParams ($params);
         $this->evaluateTemplate($params);
 
         // get new meta
         $this->meta = $this->getMeta($this->eval_content);
+    }
+
+    protected function cleanParams ($input) {
+        $result = [];
+        $params = $this->getParams();
+
+        // add some extra ones
+        $params['name'] = 'required';
+
+        foreach ($params as $key => $type) {
+            if ($type === 'flag') {
+                if (isset($input[$key])) {
+                    $result[$key] = $input[$key];
+                }
+                else {
+                    $result[$key] = false;
+                }
+            }
+            else if ($type === 'optional') {
+                if (isset($input[$key])) {
+                    $result[$key] = $input[$key];
+                }
+                else {
+                    $result[$key] = false;
+                }
+            }
+            else if ($type === 'required') {
+                if (!isset($input[$key])) {
+                    throw new CookieException("Needs argument [ $key ]");
+                }
+                $result[$key] = $input[$key];
+            }
+            else {
+                // type is the default value
+                if(isset($input[$key])) {
+                    $result[$key] = $input[$key];
+                }
+                else {
+                    $result[$key] = $type;
+                }
+            }
+
+
+        }
+
+        return $result;
     }
 
     /**
