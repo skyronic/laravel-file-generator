@@ -3,7 +3,6 @@
 namespace Skyronic\Cookie;
 
 use Illuminate\Support\ServiceProvider;
-use Skyronic\Cookie\BakeCommand;
 
 class CookieServiceProvider extends ServiceProvider
 {
@@ -16,6 +15,7 @@ class CookieServiceProvider extends ServiceProvider
     public function boot () {
         if ($this->app->runningInConsole ()) {
             $this->commands([
+
             ]);
         }
     }

@@ -1,0 +1,9 @@
+{
+   "name": "Simple Test 1",
+   "out": "foo/{{ $name }}.txt",
+   "params": {
+       "username": "optional"
+   }
+}
+---
+Hello, {{ $username }}!
