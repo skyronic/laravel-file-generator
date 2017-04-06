@@ -56,9 +56,17 @@ class BakeCommand extends Command
         // Make a list of params
         $params = $this->options();
         $params['name'] = $this->argument('name');
+        $params['path'] = '';
 
         $fp->render($params);
         $friendlyOutPath = $fp->getOutPath();
+
+        // set the path as the friendly path
+        $params['path'] = $friendlyOutPath;
+
+        // do another render with the new params
+        $fp->render($params);
+
         $outPath = base_path($friendlyOutPath);
         $contents = $fp->getContents();
         $outDir = dirname($outPath);

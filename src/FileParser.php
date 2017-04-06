@@ -136,6 +136,7 @@ class FileParser
 
         // add some extra ones
         $params['name'] = 'required';
+        $params['path'] = 'required';
 
         foreach ($params as $key => $type) {
             if ($type === 'flag') {
@@ -210,6 +211,9 @@ class FileParser
         $fs = new Filesystem();
         $x = new BladeCompiler ($fs, sys_get_temp_dir());
         $generated = $x->compileString($value);
+
+        // TODO: is there a way to do this better?
+        $generated = str_replace("Format::", "\\Skyronic\\Cookie\\Format::", $generated);
 
         ob_start() and extract($args, EXTR_SKIP);
 

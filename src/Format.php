@@ -2,9 +2,9 @@
 
 namespace Skyronic\Cookie;
 
-class FormatHelper
+class Format
 {
-    public static function namespaceForClass ($path, $rootPath = null, $rootNs = null) {
+    public static function getNamespace ($path, $rootPath = null, $rootNs = null) {
         if (is_null($rootPath)) {
             $rootPath = 'app';
             $rootNs = "App";
@@ -23,7 +23,7 @@ class FormatHelper
      * Strips
      * @param $input
      */
-    public static function getBaseName ($input) {
+    public static function baseName ($input) {
         $input = FileHelper::fixDirSeparator($input);
         $basename = basename($input);
         $parts = explode('.', $basename);
