@@ -16,7 +16,7 @@ class BakeListCommand extends Command
     public function handle () {
         $baseDir = config('cookie.dir');
         if(!file_exists($baseDir)) {
-            throw new CookieException("Invalid boilerplate directory. Run `artisan bake:init` or `artisan vendor:publish` to set up");
+            throw new CookieException("Invalid boilerplate directory. Run `artisan bake:new` or `artisan vendor:publish` to set up");
         }
 
         $fileList = new FileList();
