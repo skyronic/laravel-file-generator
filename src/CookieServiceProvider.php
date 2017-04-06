@@ -17,7 +17,8 @@ class CookieServiceProvider extends ServiceProvider
             $this->mergeConfigFrom(__DIR__."/config/cookie.php", 'cookie');
             $this->commands([
                 BakeListCommand::class,
-                BakeInitCommand::class
+                BakeInitCommand::class,
+                BakeCommand::class
             ]);
         }
     }
@@ -31,12 +32,4 @@ class CookieServiceProvider extends ServiceProvider
     {
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-    }
 }

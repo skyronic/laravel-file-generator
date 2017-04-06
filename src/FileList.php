@@ -54,10 +54,11 @@ class FileList
             ->name("*".$this->config['extension'])
             ->files();
 
+
         foreach ($fileList as $file) {
             $fp = new FileParser($this->config);
             $fp->readFile($file);
-            $name = $fp->getName();
+            $name = $fp->getBasename();
 
             $this->items []= $fp;
             $this->itemsByKey[$name] = $fp;
@@ -71,13 +72,18 @@ class FileList
             /** @var FileParser $item */
             $pList = $item->getParams();
             foreach ($pList as $key => $type) {
+                $param = [];
+                $param['key'] = $key;
+                $param['fileKey'] = $item->getBasename();
+                $param['name'] = $item->getName();
                 if ($type === 'flag') {
-                    $allParams[$key] = 'flag';
+                    $param['type'] = 'flag';
                 }
                 else {
                     // important, mark all of them as optional for now...
-                    $allParams[$key] = 'optional';
+                    $param['type'] = 'optional';
                 }
+                $allParams []= $param;
             }
         }
 

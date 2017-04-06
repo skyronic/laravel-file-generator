@@ -19,7 +19,7 @@ class BakeListCommand extends Command
             throw new CookieException("Invalid boilerplate directory. Run `artisan bake:new` or `artisan vendor:publish` to set up");
         }
 
-        $fileList = new FileList();
+        $fileList = new FileList(config('cookie'));
         $fileList->readDirectory($baseDir);
 
         $items = $fileList->listItems();

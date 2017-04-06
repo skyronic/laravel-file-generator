@@ -21,7 +21,7 @@ class BakeInitCommand extends Command
 
         $outDir = dirname($outPath);
         if(!file_exists($outDir)) {
-            mkdir($outDir, true);
+            mkdir($outDir,0777, true);
         }
         if (file_exists($outPath)) {
             throw new CookieException("Boilerplate file already exists [ $outPath ]");
@@ -29,7 +29,7 @@ class BakeInitCommand extends Command
 
         $content = <<<CONTENT
 {
-   "description": "$desc",
+   "name": "$desc",
    "out": "edit/me/{{ \$name }}.txt",
    "params": {
         "myParam": "optional"
