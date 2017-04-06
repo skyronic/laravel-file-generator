@@ -7,9 +7,21 @@ use Symfony\Component\Finder\Finder;
 
 class FileList
 {
-    public function __construct()
+    /**
+     * Config for the
+     *
+     * @var array
+     */
+    private $config;
+
+    /**
+     * FileList constructor.
+     * @param $config
+     */
+    public function __construct($config)
     {
 
+        $this->config = $config;
     }
 
     /**
@@ -39,11 +51,12 @@ class FileList
     public function readDirectory ($dir) {
         $finder = new Finder();
         $fileList = $finder->in($dir)
-            ->name("*.boilerplate.txt")
+            ->name("*".$this->config['extension'])
             ->files();
 
         foreach ($fileList as $file) {
-            $fp = new FileParser($file);
+            $fp = new FileParser($this->config);
+            $fp->readFile($file);
             $name = $fp->getName();
 
             $this->items []= $fp;

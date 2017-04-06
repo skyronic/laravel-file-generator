@@ -44,11 +44,22 @@ class FileParser
      */
     protected $path;
 
-    public function __construct($path)
+    /**
+     * Config container
+     * @var array
+     */
+    private $config;
+
+    public function __construct($config)
     {
+        $this->config = $config;
+    }
+
+    public function readFile ($path) {
         $this->path = $path;
         $this->raw_content = file_get_contents($path);
         $this->firstPassParse();
+        return $this;
     }
 
     /**
@@ -56,7 +67,7 @@ class FileParser
      * @throws CookieException
      */
     protected function firstPassParse () {
-        $this->baseName = basename($this->path, ".boilerplate.txt");
+        $this->baseName = basename($this->path, $this->config['extension']);
         $this->meta = $this->getMeta($this->raw_content);
     }
 
@@ -81,7 +92,8 @@ class FileParser
      * @return mixed
      */
     protected function getHeader ($text) {
-        $parts = explode("\n---\n", $text);
+        $separator = $this->config['separator'];
+        $parts = explode("\n$separator\n", $text);
         return $parts[0];
     }
 
@@ -224,7 +236,8 @@ class FileParser
     }
 
     protected function getBody ($text) {
-        $parts = explode("\n---\n", $text);
+        $separator = $this->config['separator'];
+        $parts = explode("\n$separator\n", $text);
         return $parts[1];
     }
 }

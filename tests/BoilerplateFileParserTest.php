@@ -10,8 +10,15 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, 1);
     }
 
+    protected function makeFileParser () {
+        return new FileParser([
+            'extension' => '.boilerplate.txt',
+            'separator' => '---'
+        ]);
+    }
+
     public function testSimple1 () {
-        $fp = new FileParser(__DIR__."/fixtures/simple.boilerplate.txt");
+        $fp = $this->makeFileParser()->readFile(__DIR__."/fixtures/simple.boilerplate.txt");
         $this->assertEquals('simple', $fp->getBasename());
         $this->assertEquals($fp->getName(), "Simple Test 1");
 
@@ -27,7 +34,7 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
     }
 
     public function testFlags () {
-        $fp = new FileParser(__DIR__."/fixtures/flags.boilerplate.txt");
+        $fp = $this->makeFileParser()->readFile(__DIR__."/fixtures/flags.boilerplate.txt");
 
         $fp->render([
             'name' => 'something'
@@ -46,7 +53,7 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
     }
 
     public function testMissingRequiredArgException () {
-        $fp = new FileParser(__DIR__."/fixtures/required_opt.boilerplate.txt");
+        $fp = $this->makeFileParser()->readFile(__DIR__."/fixtures/required_opt.boilerplate.txt");
 
         // we'll expect an exception to be thrown here.
         $this->expectExceptionMessage("Needs argument [ req1 ]");
@@ -56,7 +63,7 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
     }
 
     public function testParamTypes() {
-        $fp = new FileParser(__DIR__."/fixtures/required_opt.boilerplate.txt");
+        $fp = $this->makeFileParser()->readFile(__DIR__."/fixtures/required_opt.boilerplate.txt");
 
         // we'll expect an exception to be thrown here.
         $fp->render([
@@ -88,7 +95,7 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
     }
 
     public function testPhpTagHandling () {
-        $fp = new FileParser(__DIR__."/fixtures/php_tag.boilerplate.txt");
+        $fp = $this->makeFileParser()->readFile(__DIR__."/fixtures/php_tag.boilerplate.txt");
         $fp->render([
             'name' => 'foo'
         ]);
