@@ -228,7 +228,7 @@ class FileParser
     }
 
     public function getOutPath () {
-        return $this->meta['out'];
+        return FileHelper::fixDirSeparator($this->meta['out']);
     }
 
     public function getContents () {

@@ -17,7 +17,9 @@ class BakeInitCommand extends Command
         $extension = config('cookie.extension');
         $separator = config('cookie.separator');
 
-        $outPath = rtrim(config('cookie.dir'), "/").DIRECTORY_SEPARATOR.$type.$extension;
+        $baseDir = rtrim(FileHelper::fixDirSeparator(config('cookie.dir')), DIRECTORY_SEPARATOR);
+
+        $outPath = $baseDir.DIRECTORY_SEPARATOR.$type.$extension;
 
         $outDir = dirname($outPath);
         if(!file_exists($outDir)) {
