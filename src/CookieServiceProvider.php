@@ -21,6 +21,14 @@ class CookieServiceProvider extends ServiceProvider
                 BakeCommand::class
             ]);
         }
+
+        $this->publishes([
+            __DIR__.'/../boilerplates/' => resource_path('boilerplates'),
+        ], 'goodies');
+
+        $this->publishes([
+            __DIR__.'/config/cookie.php' => config_path('cookie.php'),
+        ], 'config');
     }
 
     /**

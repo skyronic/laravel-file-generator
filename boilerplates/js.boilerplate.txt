@@ -1,0 +1,19 @@
+{
+   "name": "JavaScript File",
+   "out": "resources/assets/js/{{ $name }}.js",
+   "params": {
+        "strict": "flag",
+        "wrap": "flag"
+   }
+}
+---
+@if($strict)"use strict";
+
+@endif
+@if($wrap)
+(function () {
+@endif
+
+@if($wrap)
+})();
+@endif

@@ -1,0 +1,20 @@
+{
+   "name": "PHP Class in 'app' Directory",
+   "out": "app/{{ $name }}.php",
+   "params": {
+       "extends": "optional",
+       "constructor": "flag"
+   }
+}
+---
+<?php
+
+namespace {{ Format::getNamespace($path) }};
+
+class {{ Format::baseName($name) }} @if($extends)extends {{ $extends }}@endif  {
+@if($constructor)
+    public function __construct () {
+
+    }
+@endif
+}

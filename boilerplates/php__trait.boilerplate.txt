@@ -1,0 +1,14 @@
+{
+   "name": "PHP Trait in 'app' Directory",
+   "out": "app/{{ $name }}.php",
+   "params": {
+   }
+}
+---
+<?php
+
+namespace {{ Format::getNamespace($path) }};
+
+trait {{ Format::baseName($name) }} {
+
+}

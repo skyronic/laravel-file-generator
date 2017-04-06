@@ -1,0 +1,29 @@
+{
+   "name": "Vue Component as a .vue file",
+   "out": "resources/assets/js/components/{{ $name }}.vue",
+   "params": {
+   }
+}
+---
+<template>
+    <div>
+         Component: {{ Format::baseName ($name) }}
+    </div>
+</template>
+
+<script>
+    export default {
+        data () {
+            return {
+
+            }
+        },
+        mounted() {
+
+        }
+    }
+</script>
+
+<style>
+
+</style>
