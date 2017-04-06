@@ -98,7 +98,7 @@ class FileParser
      * @return string
      */
     public function getBasename () {
-        return $this->baseName;
+        return str_replace("__", ":", $this->baseName);
     }
 
     public function getParams () {

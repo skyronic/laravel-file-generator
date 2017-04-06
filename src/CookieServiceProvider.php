@@ -14,8 +14,9 @@ class CookieServiceProvider extends ServiceProvider
 
     public function boot () {
         if ($this->app->runningInConsole ()) {
+            $this->mergeConfigFrom(__DIR__."/config/cookie.php", 'cookie');
             $this->commands([
-
+                BakeListCommand::class
             ]);
         }
     }
