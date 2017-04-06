@@ -136,7 +136,7 @@ class FileParser
 
         // add some extra ones
         $params['name'] = 'required';
-        $params['path'] = 'required';
+        $params['path'] = 'optional';
 
         foreach ($params as $key => $type) {
             if ($type === 'flag') {
