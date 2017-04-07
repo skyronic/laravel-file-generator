@@ -19,18 +19,13 @@ class BakeCommand extends Command
 
     public $description = "Bake a fresh new file! Warm from the boilerplate oven.";
 
-    public function __construct()
-    {
-        // get the custom/default config
-        $config = config('cookie');
-
-        $this->fileList = new FileList($config);
-        $this->fileList->readDirectory(config('cookie.dir'));
-
-        parent::__construct();
-    }
-
     public function configure() {
+        $config = config('cookie');
+        $this->fileList = new FileList($config);
+        if (file_exists(config('cookie.dir'))) {
+            $this->fileList->readDirectory(config('cookie.dir'));
+        }
+
         // Add the type and name parameters
         $allParams = $this->fileList->getAllParams();
         $options = [];
