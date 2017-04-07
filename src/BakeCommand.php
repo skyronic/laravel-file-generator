@@ -4,6 +4,7 @@
 namespace Skyronic\Cookie;
 
 
+use Exception;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -19,31 +20,45 @@ class BakeCommand extends Command
 
     public $description = "Bake a fresh new file! Warm from the boilerplate oven.";
 
-    public function configure() {
-        $config = config('cookie');
-        $this->fileList = new FileList($config);
-        if (file_exists(config('cookie.dir'))) {
-            $this->fileList->readDirectory(config('cookie.dir'));
-        }
+    /**
+     * @var Exception
+     */
+    protected $configException = null;
 
-        // Add the type and name parameters
-        $allParams = $this->fileList->getAllParams();
-        $options = [];
-        foreach ($allParams as $param) {
-            $type = $param['type'];
-            $key = $param['key'];
-            $fileKey = $param['fileKey'];
-            $name = $param['name'];
-            $optType = InputOption::VALUE_OPTIONAL;
-            if($type === 'flag') {
-                $optType = InputOption::VALUE_NONE;
+    public function configure() {
+        try {
+            $config = config('cookie');
+            $this->fileList = new FileList($config);
+            if (file_exists(config('cookie.dir'))) {
+                $this->fileList->readDirectory(config('cookie.dir'));
             }
-            $options []= [$key, null, $optType, "For `$fileKey` [ $name ]"];
-            $this->addOption($key, null, $optType, "For `$fileKey` [ $name ]");
+
+            // Add the type and name parameters
+            $allParams = $this->fileList->getAllParams();
+            $options = [];
+            foreach ($allParams as $param) {
+                $type = $param['type'];
+                $key = $param['key'];
+                $fileKey = $param['fileKey'];
+                $name = $param['name'];
+                $optType = InputOption::VALUE_OPTIONAL;
+                if($type === 'flag') {
+                    $optType = InputOption::VALUE_NONE;
+                }
+                $options []= [$key, null, $optType, "For `$fileKey` [ $name ]"];
+                $this->addOption($key, null, $optType, "For `$fileKey` [ $name ]");
+            }
+        }
+        catch (\Exception $e) {
+            $this->configException = $e;
+            return;
         }
     }
 
     public function handle () {
+        if ($this->configException !== null) {
+            throw $this->configException;
+        }
         // get the appropriate file parser
         /** @var FileParser $fp */
         $fp = $this->fileList->getItem($this->argument('type'));
