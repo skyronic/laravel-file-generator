@@ -1,0 +1,49 @@
+{
+   "name": "Vuex Store",
+   "out": "resources/assets/js/store/{{ $name }}.js",
+   "params": {
+     "module": "flag",
+     "examples": "flag"
+   }
+}
+---
+import Vuex from 'vuex';
+
+const state = {
+@if($examples)
+  // Example:
+  "my_value": 0
+@endif
+};
+
+const actions = {
+@if($examples)
+  // Example:
+  setMyValue({commit}, value) {
+    commit ('set_my_value', value);
+  }
+@endif
+};
+
+const mutations = {
+@if($examples)
+  // Example:
+  set_my_value(state, value) {
+    state.my_value= value;
+  }
+@endif
+};
+
+@if($module)
+export {
+  state,
+  actions,
+  mutations
+};
+@else
+export new Vuex.Store({
+  state,
+  actions,
+  mutations
+});
+@endif

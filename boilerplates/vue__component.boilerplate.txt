@@ -2,28 +2,43 @@
    "name": "Vue Component as a .vue file",
    "out": "resources/assets/js/components/{{ $name }}.vue",
    "params": {
+     "vuex": "flag",
+     "props": "flag",
+     "style": "css"
    }
 }
 ---
 <template>
-    <div>
-         Component: {{ Format::baseName ($name) }}
-    </div>
+  <div>
+    Component: {{ Format::baseName ($path) }}
+  </div>
 </template>
 
 <script>
-    export default {
-        data () {
-            return {
+@if($vuex)
+  import { mapGetters, mapActions } from 'vuex';
+@endif
 
-            }
-        },
-        mounted() {
+  export default {
+    data () {
+      return {
 
-        }
-    }
+      }
+    },
+    mounted () {
+
+    },
+    methods: {
+
+    }@if($props),
+    props: [
+
+    ]@endif
+
+  };
 </script>
 
-<style>
+<style lang="{{ $style }}">
 
 </style>
+
