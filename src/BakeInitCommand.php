@@ -39,7 +39,7 @@ class BakeInitCommand extends Command
 }
 $separator
 
-Template goes here. You can use a parameter like {{ \$myParam }}
+Template goes here. Blade syntax works. You can use a parameter like {{ \$myParam }}
 
 CONTENT;
 

@@ -1,8 +1,8 @@
 {
     "name": "skyronic/laravel-cookie",
-    "description": "Generate custom boilerplates like \"artisan make:model\"",
+    "description": "Laravel package to help you automate creation of files. Build your own custom generators like 'artisan make:model'.",
     "type": "library",
-    "version": "0.1",
+    "version": "0.1.0",
     "license": "MIT",
     "authors": [{
         "name": "Anirudh Sanjeev",

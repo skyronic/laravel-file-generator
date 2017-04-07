@@ -39,5 +39,4 @@ class CookieServiceProvider extends ServiceProvider
     public function register()
     {
     }
-
 }
