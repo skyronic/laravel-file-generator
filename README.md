@@ -4,7 +4,7 @@
 
 This is a Laravel package which helps you automate creation of files.
 
-![](https://thumbs.gfycat.com/OrnateWebbedCommongonolek-size_restricted.gif)(https://gfycat.com/OrnateWebbedCommongonolek)
+![](https://thumbs.gfycat.com/OrnateWebbedCommongonolek-size_restricted.gif) [High Res Link](https://gfycat.com/OrnateWebbedCommongonolek)
 
 ### Benefits
 
