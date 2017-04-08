@@ -1,8 +1,10 @@
-# Laravel file generator
+![Build Status](https://travis-ci.org/skyronic/laravel-file-generator.svg?branch=master)
+
+# Laravel file generator 
 
 This is a Laravel package which helps you automate creation of files.
 
-[![Build Status](https://travis-ci.org/skyronic/laravel-file-generator.svg?branch=master)](https://travis-ci.org/skyronic/laravel-file-generator)
+![](https://thumbs.gfycat.com/OrnateWebbedCommongonolek-size_restricted.gif)
 
 ### Benefits
 
