@@ -1,0 +1,16 @@
+{
+   "name": "Blade Template",
+   "out": "resources/views/{{ $name }}.blade.php",
+   "params": {
+       "extends": "optional",
+       "section": "content"
+    }
+}
+---
+@if($extends)
+@@extends('{{ $extends }}')
+
+@@section('{{ $section }}')
+
+@@endsection
+@endif

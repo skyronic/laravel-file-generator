@@ -1,0 +1,8 @@
+{
+   "name": "CSS File",
+   "out": "resources/css/{{ $name }}.css",
+   "params": {
+    }
+}
+---
+
