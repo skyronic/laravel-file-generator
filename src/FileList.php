@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Skyronic\Cookie;
+namespace Skyronic\FileGenerator;
 
 use Symfony\Component\Finder\Finder;
 
@@ -106,7 +106,7 @@ class FileList
 
     public function getItem ($key) {
         if (!isset($this->itemsByKey[$key])) {
-            throw new CookieException("No such generator [ $key ]");
+            throw new FileGeneratorException("No such generator [ $key ]");
         }
 
         return $this->itemsByKey[$key];

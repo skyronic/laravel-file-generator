@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Skyronic\Cookie;
+namespace Skyronic\FileGenerator;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Compilers\BladeCompiler;
@@ -64,7 +64,7 @@ class FileParser
 
     /**
      * Does a first parse and extracts the meta.
-     * @throws CookieException
+     * @throws FileGeneratorException
      */
     protected function firstPassParse () {
         $this->baseName = basename($this->path, $this->config['extension']);
@@ -75,13 +75,13 @@ class FileParser
      * Extract meta from given content
      * @param $content
      * @return mixed
-     * @throws CookieException
+     * @throws FileGeneratorException
      */
     protected function getMeta ($content) {
         $meta =  json_decode($this->getHeader($content), true);
 
         if(json_last_error() !== JSON_ERROR_NONE) {
-            throw new CookieException("JSON Exception: [$this->baseName] ".json_last_error_msg());
+            throw new FileGeneratorException("JSON Exception: [$this->baseName] ".json_last_error_msg());
         }
 
         return $meta;
@@ -157,7 +157,7 @@ class FileParser
             }
             else if ($type === 'required') {
                 if (!isset($input[$key])) {
-                    throw new CookieException("Needs argument [ $key ]");
+                    throw new FileGeneratorException("Needs argument [ $key ]");
                 }
                 $result[$key] = $input[$key];
             }
@@ -213,7 +213,7 @@ class FileParser
         $generated = $x->compileString($value);
 
         // TODO: is there a way to do this better?
-        $generated = str_replace("Format::", "\\Skyronic\\Cookie\\Format::", $generated);
+        $generated = str_replace("Format::", "\\Skyronic\\FileGenerator\\Format::", $generated);
 
         ob_start() and extract($args, EXTR_SKIP);
 

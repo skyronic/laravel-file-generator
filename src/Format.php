@@ -1,6 +1,6 @@
 <?php
 
-namespace Skyronic\Cookie;
+namespace Skyronic\FileGenerator;
 
 class Format
 {

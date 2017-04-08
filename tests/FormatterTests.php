@@ -3,7 +3,7 @@
 namespace Tests;
 
 use PHPUnit_Framework_TestCase;
-use Skyronic\Cookie\Format;
+use Skyronic\FileGenerator\Format;
 
 class FormatterTests extends PHPUnit_Framework_TestCase
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Skyronic\Cookie;
+namespace Skyronic\FileGenerator;
 
 
 use Exception;
@@ -9,14 +9,14 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class BakeCommand extends Command
+class FileGenCommand extends Command
 {
     /**
      * @var FileList
      */
     private $fileList;
 
-    public $signature = "bake {type} {name} {--f|force} {--dry-run}";
+    public $signature = "generate {type} {name} {--f|force} {--dry-run}";
 
     public $description = "Bake a fresh new file! Warm from the boilerplate oven.";
 
@@ -27,10 +27,10 @@ class BakeCommand extends Command
 
     public function configure() {
         try {
-            $config = config('cookie');
+            $config = config('filegen');
             $this->fileList = new FileList($config);
-            if (file_exists(config('cookie.dir'))) {
-                $this->fileList->readDirectory(config('cookie.dir'));
+            if (file_exists(config('filegen.dir'))) {
+                $this->fileList->readDirectory(config('filegen.dir'));
             }
 
             // Add the type and name parameters

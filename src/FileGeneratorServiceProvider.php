@@ -1,10 +1,10 @@
 <?php
 
-namespace Skyronic\Cookie;
+namespace Skyronic\FileGenerator;
 
 use Illuminate\Support\ServiceProvider;
 
-class CookieServiceProvider extends ServiceProvider
+class FileGeneratorServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -14,11 +14,11 @@ class CookieServiceProvider extends ServiceProvider
 
     public function boot () {
         if ($this->app->runningInConsole ()) {
-            $this->mergeConfigFrom(__DIR__."/config/cookie.php", 'cookie');
+            $this->mergeConfigFrom(__DIR__."/config/filegen.php", 'filegen');
             $this->commands([
-                BakeListCommand::class,
-                BakeInitCommand::class,
-                BakeCommand::class
+                FileGenListCommand::class,
+                FileGenNewCommand::class,
+                FileGenCommand::class
             ]);
         }
 
@@ -27,7 +27,7 @@ class CookieServiceProvider extends ServiceProvider
         ], 'goodies');
 
         $this->publishes([
-            __DIR__.'/config/cookie.php' => config_path('cookie.php'),
+            __DIR__.'/config/filegen.php' => config_path('filegen.php'),
         ], 'config');
     }
 

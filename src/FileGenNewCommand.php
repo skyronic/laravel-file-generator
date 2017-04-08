@@ -1,23 +1,23 @@
 <?php
 
 
-namespace Skyronic\Cookie;
+namespace Skyronic\FileGenerator;
 
 
 use Illuminate\Console\Command;
 
-class BakeInitCommand extends Command
+class FileGenNewCommand extends Command
 {
-    public $signature = "bake:new {type} {--d|description=My Template}";
+    public $signature = "generate:new {type} {--d|description=My Template}";
 
     public function handle () {
         $type = $this->argument('type');
         $desc = $this->option('description');
 
-        $extension = config('cookie.extension');
-        $separator = config('cookie.separator');
+        $extension = config('filegen.extension');
+        $separator = config('filegen.separator');
 
-        $baseDir = rtrim(FileHelper::fixDirSeparator(config('cookie.dir')), DIRECTORY_SEPARATOR);
+        $baseDir = rtrim(FileHelper::fixDirSeparator(config('filegen.dir')), DIRECTORY_SEPARATOR);
 
         $outPath = $baseDir.DIRECTORY_SEPARATOR.$type.$extension;
 
@@ -26,7 +26,7 @@ class BakeInitCommand extends Command
             mkdir($outDir,0777, true);
         }
         if (file_exists($outPath)) {
-            throw new CookieException("Boilerplate file already exists [ $outPath ]");
+            throw new FileGeneratorException("Boilerplate file already exists [ $outPath ]");
         }
 
         $content = <<<CONTENT

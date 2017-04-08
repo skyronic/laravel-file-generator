@@ -1,5 +1,5 @@
 {
-    "name": "skyronic/laravel-cookie",
+    "name": "skyronic/laravel-file-generator",
     "description": "Laravel package to help you automate creation of files. Build your own custom generators like 'artisan make:model'.",
     "type": "library",
     "keywords": ["laravel"],
@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Skyronic\\Cookie\\": "src/"
+            "Skyronic\\FileGenerator\\": "src/"
         }
     },
     "minimum-stability": "dev",

@@ -2,7 +2,7 @@
 
 namespace Tests;
 use PHPUnit_Framework_TestCase;
-use Skyronic\Cookie\FileParser;
+use Skyronic\FileGenerator\FileParser;
 
 class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
 {

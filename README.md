@@ -1,8 +1,8 @@
-# Cookie - Laravel file generator
+# Laravel file generator
 
-Cookie is a Laravel package which helps you automate creation of files.
+This is a Laravel package which helps you automate creation of files.
 
-[![Build Status](https://travis-ci.org/skyronic/laravel-cookie.svg?branch=master)](https://travis-ci.org/skyronic/laravel-cookie)
+[![Build Status](https://travis-ci.org/skyronic/laravel-file-generator.svg?branch=master)](https://travis-ci.org/skyronic/laravel-file-generator)
 
 ### Benefits
 
@@ -18,16 +18,16 @@ Cookie is a Laravel package which helps you automate creation of files.
 **Step 1**: Install the package
 
 ```bash
-$ composer require skyronic/laravel-cookie
+$ composer require skyronic/laravel-file-generator
 ```
 
-**Step 2**: Add `CookieServiceProvider` to your `config/app.php`
+**Step 2**: Add `FileGeneratorServiceProvider` to your `config/app.php`
 
 ```php
 'providers' => [
     // ... other providers ...
     
-    \Skyronic\Cookie\CookieServiceProvider::class,
+    \Skyronic\FileGenerator\FileGeneratorServiceProvider::class,
 ]
 ```
 
@@ -40,7 +40,7 @@ $ php artisan vendor:publish --tag='goodies'
 **Step 4**: You can list all the installed boilerplates
 
 ```bash
-$ php artisan bake:list
+$ php artisan generate:list
 
 +---------------+------------------------------+
 | Type          | Name                         |
@@ -52,13 +52,13 @@ $ php artisan bake:list
 +---------------+------------------------------+
 
 
-Use `artisan bake <type>` to create a new file!
+Use `artisan generate <type>` to create a new file!
 ```
 
 **Step 5**: You can create a php class now:
 
 ```bash
-$ php artisan bake php:class "Support/Helpers/AwesomeHelper" --extends "BaseHelper" --constructor
+$ php artisan generate php:class "Support/Helpers/AwesomeHelper" --extends "BaseHelper" --constructor
 
 Created file [ app/Support/Helpers/AwesomeHelper.php ]
 ```
@@ -80,7 +80,7 @@ class AwesomeHelper extends BaseHelper  {
 **Step 6**: Create your own template:
 
 ```bash
-$ php artisan bake:new mytemplate --description "My New Template"
+$ php artisan generate:new mytemplate --description "My New Template"
 
 Created new boilerplate at [ resources/boilerplates/mytemplate.boilerplate.txt ]
 ```
@@ -122,14 +122,14 @@ Let's take a closer look at this config object:
 }
 ```
 
-This should be valid JSON. The key `name` is the name of the template used for `bake:list`. Not to be confusued with the `$name` variable.
+This should be valid JSON. The key `name` is the name of the template used for `generate:list`. Not to be confusued with the `$name` variable.
 
 #### Setting Output Path
 
 If you try to run the template with something like:
 
 ```
-$ php artisan bake mytemplate foo/bar
+$ php artisan generate mytemplate foo/bar
 ```
 
 The output path here will be: `edit/me/foo/bar.txt`. `$name` contains the second parameter, and even the strings can use blade so `{{ $name }}` will produce the path.
@@ -139,7 +139,7 @@ The output path here will be: `edit/me/foo/bar.txt`. `$name` contains the second
 Parameters allow you to customize and change the content of the file. For example, here we have `myParam`. So running this boilerplate with
 
 ```
-$ php artisan bake mytemplate foo/bar --myParam "Hello"
+$ php artisan generate mytemplate foo/bar --myParam "Hello"
 ```
 
 Will result in the text file:
@@ -167,10 +167,10 @@ Now we can run it like:
 
 ```
 # $someFlag will be set to false
-$ php artisan bake mytemplate foo/bar 
+$ php artisan generate mytemplate foo/bar 
 
 # $someFlag will be set to true
-$ php artisan bake mytemplate foo/bar --someFlag
+$ php artisan generate mytemplate foo/bar --someFlag
 ```
 
 #### Required Parameters
@@ -186,9 +186,9 @@ class {{ $className }} {
 ```
 
 ```
-$ php artisan bake mytemplate foo/bar
+$ php artisan generate mytemplate foo/bar
 
-  [Skyronic\Cookie\CookieException]
+  [Skyronic\FileGenerator\FileGeneratorException]
   Needs argument [ className ]
 ```
 
@@ -210,7 +210,7 @@ class MyClass {
 You can recognize the `if` and `endif` as blade conditional structures. If `authorName` is set like:
 
 ```
-$ php artisan bake mytemplate foo/bar --authorName John
+$ php artisan generate mytemplate foo/bar --authorName John
 ```
 
 Then the value is set to "John". Else it's null.
@@ -231,22 +231,22 @@ The value is going to be set to 2017 unless specified otherwise.
 
 ```
 # Set to default value of 2017
-$ php artisan bake mytemplate foo/bar
+$ php artisan generate mytemplate foo/bar
 
 # Override the value to 2016
-$ php artisan bake mytemplate foo/bar --copyrightYear 2016
+$ php artisan generate mytemplate foo/bar --copyrightYear 2016
 ```
 
 ## Tips for writing boilerplates
 
 * A template like `vue__component.boilerplate.txt` will become `vue:component` for cleaner organization. You can use `__` in your own templates.
-* **Important:** Pass a `--dry-run` flag like `php artisan bake --dry-run mytemplate foo/bar --myParam "paramvalue"` to display the output in console. This lets you iterate and fix any potential issues without creating files.
+* **Important:** Pass a `--dry-run` flag like `php artisan generate --dry-run mytemplate foo/bar --myParam "paramvalue"` to display the output in console. This lets you iterate and fix any potential issues without creating files.
 * You can use most of laravel's helper functions and even some other PHP classes with some advanced blade and the `@php` directive
-* You can use paths like `foo/bar/{{ $name }}` and Cookie will automatically adjust directory separators on windows.
+* You can use paths like `foo/bar/{{ $name }}` and FileGenerator will automatically adjust directory separators on windows.
 
 ## Formatter
 
-Sometimes you might need to do some string manipulation. Later versions of Cookie will contain more comprehensive string manipulation later. 
+Sometimes you might need to do some string manipulation. Later versions of FileGenerator will contain more comprehensive string manipulation later. 
 
 #### Camel-case, Snake-case, etc
 
@@ -259,7 +259,7 @@ If you've got something like `app/Support/MyHelper.php` and want to extract `MyH
 
 #### Getting a namespace from path
 
-Namespaces are a bit tricky, since they need to render forward-slashes. Cookie contains a simple format helper which can generate a namespace from a given file path. It uses the laravel `app` directory and `App` namespace by default.
+Namespaces are a bit tricky, since they need to render forward-slashes. FileGenerator contains a simple format helper which can generate a namespace from a given file path. It uses the laravel `app` directory and `App` namespace by default.
 
 ```
 // $path = "app/Support/Helpers/AwesomeHelper.php"
@@ -302,10 +302,4 @@ class {{ Format::baseName($name) }} @if($extends)extends {{ $extends }}@endif  {
 
 The example should be pretty self explanatory. But can illustrate that even a little blade templating can go a long way.
 
-
-### What's with the name?
-
-You can use a [Cookie Cutter](https://en.wikipedia.org/wiki/Cookie_cutter) to quickly and reliably create similar (delicious) cookies from a template. 
-
-Also, Cookie is the name of a really cute Beagle I know.
 
