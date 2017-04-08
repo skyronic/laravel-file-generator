@@ -244,9 +244,30 @@ $ php artisan generate mytemplate foo/bar --copyrightYear 2016
 * You can use most of laravel's helper functions and even some other PHP classes with some advanced blade and the `@php` directive
 * You can use paths like `foo/bar/{{ $name }}` and FileGenerator will automatically adjust directory separators on windows.
 
+If you're using this tool to generate blade files, using keywords like `@section` and `@extends` might not work. Instead use `@@section` and `@@extends`
+
+For example:
+
+```
+{
+   "name": "Blade Template",
+   "out": "resources/views/{{ $name }}.blade.php",
+   "params": {
+       "title": "required"
+   }
+}
+---
+@@extends('layouts.main')
+@@section("title", '{{ $title }}')
+
+@@section('content')
+
+@@endsection
+```
+
 ## Formatter
 
-Sometimes you might need to do some string manipulation. Later versions of FileGenerator will contain more comprehensive string manipulation later. 
+Sometimes you might need to do some string manipulation. Later versions of File Generator will contain more comprehensive string manipulation later. 
 
 #### Camel-case, Snake-case, etc
 
