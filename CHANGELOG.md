@@ -1,3 +1,8 @@
+### 0.1.4
+
+* Changed name to "file-generator"
+* Still has some issues to work out.
+
 ### 0.1.3
 
 * Improved Vue boilerplate templates
