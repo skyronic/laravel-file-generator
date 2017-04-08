@@ -45,12 +45,16 @@ $ php artisan generate:list
 +---------------+------------------------------+
 | Type          | Name                         |
 +---------------+------------------------------+
+| css           | CSS File                     |
 | js            | JavaScript File              |
 | php:class     | PHP Class in 'app' Directory |
 | php:trait     | PHP Trait in 'app' Directory |
+| scope         | Eloquent Global Scope        |
+| scss          | SCSS File                    |
+| view          | Blade Template               |
 | vue:component | Vue Component as a .vue file |
+| vue:store     | Vuex Store                   |
 +---------------+------------------------------+
-
 
 Use `artisan generate <type>` to create a new file!
 ```
