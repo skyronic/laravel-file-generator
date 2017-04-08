@@ -1,3 +1,7 @@
+### 0.1.6
+
+* Added new boilerplates for View, CSS, etc
+
 ### 0.1.5
 
 * Namespace generator didn't work properly. Hopefully does better now.

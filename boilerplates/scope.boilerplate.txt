@@ -25,6 +25,7 @@ class {{ Format::baseName($name) }} implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('age', '>', 200);
+        // Example usage:
+        // $builder->where('age', '>', 200);
     }
 }
