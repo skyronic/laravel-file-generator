@@ -1,3 +1,7 @@
+### 0.1.5
+
+* Namespace generator didn't work properly. Hopefully does better now.
+
 ### 0.1.4
 
 * Changed name to "file-generator"
