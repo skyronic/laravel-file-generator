@@ -1,0 +1,29 @@
+{
+   "name": "View Composer",
+   "out": "app/Http/ViewComposers/{{ $name }}.php",
+   "params": {
+       "empty": "flag"
+    }
+}
+---
+<?php
+
+namespace {{ Format::getNamespace($path) }};
+
+use Illuminate\View\View;
+
+class {{ Format::baseName($name) }}
+{
+    /**
+     * Bind data to the view.
+     *
+     * @param  View  $view
+     * @return void
+     */
+    public function compose(View $view)
+    {
+@if(!$empty)
+        // $view->with('count', 1234);
+@endif
+    }
+}
