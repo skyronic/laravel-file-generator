@@ -93,7 +93,7 @@ class FileParser
      */
     protected function getHeader ($text) {
         $separator = $this->config['separator'];
-        $parts = explode("\n$separator\n", $text);
+        $parts = explode("\n$separator", $text);
         return $parts[0];
     }
 
@@ -241,7 +241,7 @@ class FileParser
 
     protected function getBody ($text) {
         $separator = $this->config['separator'];
-        $parts = explode("\n$separator\n", $text);
-        return $parts[1];
+        $parts = explode("\n$separator", $text);
+        return trim($parts[1]);
     }
 }
