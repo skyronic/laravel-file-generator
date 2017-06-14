@@ -93,7 +93,7 @@ class FileParser
      */
     protected function getHeader ($text) {
         $separator = $this->config['separator'];
-        $parts = explode("\n$separator\n", $text);
+        $parts = preg_split("/[\r\n|\r|\n]".$separator."[\r\n|\r|\n]/", $text);
         return $parts[0];
     }
 
