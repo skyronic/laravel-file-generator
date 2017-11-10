@@ -32,9 +32,11 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "laravel": {
-        "providers": [
-            "Skyronic\\FileGenerator\\FileGeneratorServiceProvider"
-        ]
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Skyronic\\FileGenerator\\FileGeneratorServiceProvider"
+            ]
+        }
     }
 }
