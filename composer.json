@@ -14,7 +14,7 @@
         "illuminate/console": "~5.4",
         "illuminate/view": "~5.4",
         "illuminate/filesystem": "~5.4",
-        "symfony/finder": "~3.2"
+        "symfony/finder": "~4.1"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",
