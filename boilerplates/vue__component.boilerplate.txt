@@ -1,6 +1,6 @@
 {
    "name": "Vue Component as a .vue file",
-   "out": "resources/assets/js/components/{{ $name }}.vue",
+   "out": "resources/js/components/{{ $name }}.vue",
    "params": {
      "vuex": "flag",
      "props": "flag",

@@ -1,6 +1,6 @@
 {
    "name": "JavaScript File",
-   "out": "resources/assets/js/{{ $name }}.js",
+   "out": "resources/js/{{ $name }}.js",
    "params": {
         "strict": "flag",
         "wrap": "flag"

@@ -1,6 +1,6 @@
 {
    "name": "Vuex Store",
-   "out": "resources/assets/js/store/{{ $name }}.js",
+   "out": "resources/js/store/{{ $name }}.js",
    "params": {
      "module": "flag",
      "examples": "flag"
