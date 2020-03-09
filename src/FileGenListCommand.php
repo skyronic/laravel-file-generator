@@ -16,7 +16,7 @@ class FileGenListCommand extends Command
     public function handle () {
         $baseDir = FileHelper::fixDirSeparator(config('filegen.dir'));
         if(!file_exists($baseDir)) {
-            throw new FileGeneratorException("Invalid boilerplate directory. Run `artisan generate:new` or `artisan vendor:publish --tag=goodies` to set up");
+            throw new FileGeneratorException("Invalid boilerplate directory. Run `artisan generate:new` or `artisan vendor:publish --tag=boilerplates` to set up");
         }
 
         $fileList = new FileList(config('filegen'));

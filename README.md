@@ -33,10 +33,10 @@ $ composer require skyronic/laravel-file-generator
 ]
 ```
 
-**Step 3**: Publish the "goodies" - an included set of useful boilerplates like PHP Classes, Vue Components, etc.
+**Step 3**: Publish the "boilerplates" - an included set of useful boilerplates like PHP Classes, Vue Components, etc.
 
 ```bash
-$ php artisan vendor:publish --tag='goodies'
+$ php artisan vendor:publish --tag='boilerplates'
 ```
 
 **Step 4**: You can list all the installed boilerplates
@@ -301,7 +301,7 @@ Format::getNamespace ($path, 'tests', "Tests")
 
 ## Example: PHP Class generator
 
-First, be sure that you've run `php artisan vendor:publish --tag='goodies'` and check `app/resources/boilerplates/php__class.boilerplate.txt`
+First, be sure that you've run `php artisan vendor:publish --tag='boilerplates'` and check `app/resources/boilerplates/php__class.boilerplate.txt`
 
 ```
 {

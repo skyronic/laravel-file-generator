@@ -24,7 +24,7 @@ class FileGeneratorServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../boilerplates/' => resource_path('boilerplates'),
-        ], 'goodies');
+        ], 'boilerplates');
 
         $this->publishes([
             __DIR__.'/config/filegen.php' => config_path('filegen.php'),
