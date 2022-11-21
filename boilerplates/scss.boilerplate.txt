@@ -1,8 +1,0 @@
-{
-   "name": "SCSS File",
-   "out": "resources/sass/{{ $name }}.scss",
-   "params": {
-    }
-}
----
-
