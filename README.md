@@ -1,10 +1,6 @@
-![Build Status](https://travis-ci.org/skyronic/laravel-file-generator.svg?branch=master)
-
 # Laravel file generator 
 
 This is a Laravel package which helps you automate creation of files.
-
-![](https://thumbs.gfycat.com/OrnateWebbedCommongonolek-size_restricted.gif) [High Res Link](https://gfycat.com/OrnateWebbedCommongonolek)
 
 ### Benefits
 
@@ -23,23 +19,13 @@ This is a Laravel package which helps you automate creation of files.
 $ composer require skyronic/laravel-file-generator
 ```
 
-**Step 2**: Add `FileGeneratorServiceProvider` to your `config/app.php`
-
-```php
-'providers' => [
-    // ... other providers ...
-    
-    \Skyronic\FileGenerator\FileGeneratorServiceProvider::class,
-]
-```
-
-**Step 3**: Publish the "boilerplates" - an included set of useful boilerplates like PHP Classes, Vue Components, etc.
+**Step 2**: Publish the "boilerplates" - an included set of useful boilerplates like PHP Classes.
 
 ```bash
 $ php artisan vendor:publish --tag='boilerplates'
 ```
 
-**Step 4**: You can list all the installed boilerplates
+**Step 3**: You can list all the installed boilerplates
 
 ```bash
 $ php artisan generate:list
@@ -51,11 +37,7 @@ $ php artisan generate:list
 | js            | JavaScript File              |
 | php:class     | PHP Class in 'app' Directory |
 | php:trait     | PHP Trait in 'app' Directory |
-| scope         | Eloquent Global Scope        |
-| scss          | SCSS File                    |
 | view          | Blade Template               |
-| vue:component | Vue Component as a .vue file |
-| vue:store     | Vuex Store                   |
 +---------------+------------------------------+
 
 Use `artisan generate <type>` to create a new file!
