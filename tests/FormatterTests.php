@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Skyronic\FileGenerator\Format;
 
-class FormatterTests extends PHPUnit_Framework_TestCase
+class FormatterTests extends TestCase
 {
     public function testBasename () {
         $this->assertEquals('input', Format::baseName("foo/bar/input.txt"));

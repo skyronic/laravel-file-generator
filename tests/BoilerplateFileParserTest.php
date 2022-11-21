@@ -1,10 +1,11 @@
 <?php
 
 namespace Tests;
-use PHPUnit_Framework_TestCase;
+
+use PHPUnit\Framework\TestCase;
 use Skyronic\FileGenerator\FileParser;
 
-class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
+class BoilerplateFileParserTest extends TestCase
 {
     public function testSomething () {
         $this->assertEquals(1, 1);
@@ -40,16 +41,16 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
             'name' => 'something'
         ]);
         $content1 = $fp->getContents();
-        $this->assertContains("ALWAYS_VISIBLE", $content1);
-        $this->assertNotContains("FLAG1_SET", $content1);
+        $this->assertStringContainsString("ALWAYS_VISIBLE", $content1);
+        $this->assertStringNotContainsString("FLAG1_SET", $content1);
 
         $fp->render([
             'name' => 'something',
             'flag1' => true
         ]);
         $content2 = $fp->getContents();
-        $this->assertContains("ALWAYS_VISIBLE", $content2);
-        $this->assertContains("FLAG1_SET", $content2);
+        $this->assertStringContainsString("ALWAYS_VISIBLE", $content2);
+        $this->assertStringContainsString("FLAG1_SET", $content2);
     }
 
     public function testMissingRequiredArgException () {
@@ -71,9 +72,9 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
             'req1' => "MY_REQUIRED_VALUE",
         ]);
         $content1 = $fp->getContents();
-        $this->assertContains("MY_REQUIRED_VALUE", $content1);
-        $this->assertContains("MY_DEFAULT_VALUE", $content1);
-        $this->assertContains("ALWAYS_VISIBLE", $content1);
+        $this->assertStringContainsString("MY_REQUIRED_VALUE", $content1);
+        $this->assertStringContainsString("MY_DEFAULT_VALUE", $content1);
+        $this->assertStringContainsString("ALWAYS_VISIBLE", $content1);
 
         $fp->render([
             'name' => 'foo',
@@ -81,8 +82,8 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
             'opt1' => "MY_OPTIONAL_VALUE"
         ]);
         $content1 = $fp->getContents();
-        $this->assertContains("MY_OPTIONAL_VALUE", $content1);
-        $this->assertContains("HAS_OPT_VALUE", $content1);
+        $this->assertStringContainsString("MY_OPTIONAL_VALUE", $content1);
+        $this->assertStringContainsString("HAS_OPT_VALUE", $content1);
 
         $fp->render([
             'name' => 'foo',
@@ -90,8 +91,8 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
             'def1' => "MY_OVERRIDDEN_VALUE"
         ]);
         $content1 = $fp->getContents();
-        $this->assertContains("MY_OVERRIDDEN_VALUE", $content1);
-        $this->assertNotContains("MY_DEFAULT_VALUE", $content1);
+        $this->assertStringContainsString("MY_OVERRIDDEN_VALUE", $content1);
+        $this->assertStringNotContainsString("MY_DEFAULT_VALUE", $content1);
     }
 
     public function testPhpTagHandling () {
@@ -100,10 +101,10 @@ class BoilerplateFileParserTest extends PHPUnit_Framework_TestCase
             'name' => 'foo'
         ]);
         $content = $fp->getContents();
-        $this->assertContains("<?php\nclass Hello {}\n?>", $content);
-        $this->assertContains("<?php class Hello {} ?>", $content);
-        $this->assertContains("<? class Hello {} ?>", $content);
-        $this->assertContains('<?= $yo ?>', $content);
+        $this->assertStringContainsString("<?php\nclass Hello {}\n?>", $content);
+        $this->assertStringContainsString("<?php class Hello {} ?>", $content);
+        $this->assertStringContainsString("<? class Hello {} ?>", $content);
+        $this->assertStringContainsString('<?= $yo ?>', $content);
     }
 
 }
