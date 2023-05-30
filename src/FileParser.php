@@ -241,7 +241,7 @@ class FileParser
 
     protected function getBody ($text) {
         $separator = $this->config['separator'];
-        $parts = explode("\n$separator\n", $text);
+        $parts = preg_split("/[\r\n|\r|\n]".$separator."[\r\n|\r|\n]/", $text);
         return $parts[1];
     }
 }
